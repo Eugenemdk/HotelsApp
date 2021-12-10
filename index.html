@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>US Real Estate company</title>
+</head>
+<style>
+#map{
+  height:700px;
+  width:100%;
+}</style>
+<body>
+  <h1>US Real Estate company</h1>
+  <div id="map"></div>
+  <script>
+    function initMap(){
+      //map options
+      var options={
+        zoom:13,
+        center:{lat:39.247478,lng:-106.300194}
+      }
+    var map=new google.maps.Map(document.getElementById('map'),options);
+    var markers=[
+    addMarker({cords:{lat:39.247478,lng:-106.300194},  content:"<div style='float:left'><img src='house1.jpg'></div><div style='float:center; padding: 10px;'><b>House</b><br/>123 Avenue Bay<br/>Leadville,USA</div>"}),
+    addMarker({cords:{lat:38.547871,lng:-106.938622} , content:"<div style='float:left'><img src='house2.jpg'></div><div style='float:center; padding: 10px;'><b>House</b><br/>69, Maple Street<br/>Gunnisson,USA</div>"}),
+    addMarker({cords:{lat:40.255306,lng:-103.803062} , content:"<div style='float:left'><img src='house3.jpg'></div><div style='float:center; padding: 10px;'><b>House</b><br/>5th Avenue<br/>Fort Morgan,USA</div>"}),
+    addMarker({cords:{lat:30.193626,lng:-85.683029} , content:"<div style='float:left'><img src='house4.jpg'></div><div style='float:center; padding: 10px;'><b>House</b><br/>78, Washington street<br/>Panama City,USA</div>"}),
+    addMarker({cords:{lat:25.793449,lng:-80.139198} , content:"<div style='float:left'><img src='house5.jpg'></div><div style='float:center; padding: 10px;'><b>House</b><br/>81 Alpenhole Creek<br/>Miami Beach,USA</div>"}),
+    
+    ]
+
+    for (var i=0;i<markers.length;i++){
+      addMarker(markers[i]);
+    }
+
+      function addMarker(props){
+        var marker= new google.maps.Marker({
+       position:props.cords,
+       map:map
+     });
+     //Check content
+     if(props.content){
+       var infoWindow = new google.maps.InfoWindow({
+          content: props.content});
+       marker.addListener("click",function(){
+         infoWindow.open(map,marker);
+       });
+
+     }
+      }
+//set new marker
+/*
+    var marker= new google.maps.Marker({
+   position:{lat:46.482952,lng:30.712481},
+   map:map
+ });
+ var infoWindow = new google.maps.InfoWindow({
+    content: "<div style='float:left'><img src='https://cdn.vox-cdn.com/thumbor/frFQQhOsxl8DctGjkR8OLHpdKMs=/0x0:3686x2073/1200x800/filters:focal(1549x743:2137x1331)/cdn.vox-cdn.com/uploads/chorus_image/image/68976842/House_Tour_Liverman_3D6A3138_tour.0.jpg'></div><div style='float:right; padding: 10px;'><b>House</b><br/>123 Avenue Bay<br/>Odessa,Ukraine</div>"
+ });
+ marker.addListener("click",function(){
+   infoWindow.open(map,marker);
+ });
+     */
+    }
+
+  </script>
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdxQ_juwkS4glRsYWfUyrgQiUTJNUVlNE&callback=initMap&v=weekly"
+      async
+    ></script>
+</body>
+</html>
